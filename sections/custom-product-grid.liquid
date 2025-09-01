@@ -1,0 +1,74 @@
+{% comment %}
+Custom Product Grid – 6 product cards, popup with variants + AJAX add-to-cart, special rule (Black+Medium -> auto add Soft Winter Jacket)
+{% endcomment %}
+
+<section class="cgrid page-width" data-section="cgrid" 
+  data-trigger-color="{{ section.settings.trigger_color | escape }}"
+  data-trigger-size="{{ section.settings.trigger_size | escape }}"
+  {% if section.settings.soft_jacket_product != blank %}
+    data-soft-handle="{{ all_products[section.settings.soft_jacket_product].handle }}"
+  {% endif %}
+>
+  <div class="cgrid__wrap">
+    {% for block in section.blocks %}
+      {% assign p = all_products[block.settings.product] %}
+      {% if p %}
+      <article class="cgrid__card" data-handle="{{ p.handle }}">
+        <button class="cgrid__imgbtn" aria-label="View {{ p.title }}">
+          <img 
+            loading="lazy" 
+            src="{{ p.featured_image | image_url: width: 600 }}" 
+            alt="{{ p.title }}" 
+            width="{{ p.featured_image.width }}" 
+            height="{{ p.featured_image.height }}">
+
+        </button>
+        <h3 class="cgrid__title">{{ p.title }}</h3>
+        <p class="cgrid__price">{{ p.price | money }}</p>
+        <button class="cgrid__view" data-open>View</button>
+      </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {%- comment -%} Popup modal skeleton (hidden by default) {%- endcomment -%}
+  <div class="cgrid__modal" data-modal aria-hidden="true">
+    <div class="cgrid__dialog" role="dialog" aria-modal="true" aria-labelledby="cgridTitle">
+      <button class="cgrid__close" data-close aria-label="Close">✕</button>
+
+      <div class="cgrid__media"><img data-modal-image alt="" width="600" height="600">
+</div>
+      <div class="cgrid__body">
+        <h3 id="cgridTitle" class="cgrid__name" data-modal-title></h3>
+        <p class="cgrid__price" data-modal-price></p>
+        {% if section.settings.show_descriptions %}
+        <div class="cgrid__desc" data-modal-desc></div>
+        {% endif %}
+
+        <div class="cgrid__options" data-options></div>
+
+        <div class="cgrid__cta">
+          <button class="cgrid__add" data-add disabled>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="cgrid__backdrop" data-close></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Product Grid",
+  "settings": [
+    { "type": "product", "id": "soft_jacket_product", "label": "Soft Winter Jacket product (for auto add)" },
+    { "type": "text", "id": "trigger_color", "label": "Trigger color value", "default": "Black" },
+    { "type": "text", "id": "trigger_size", "label": "Trigger size value", "default": "Medium" },
+    { "type": "checkbox", "id": "show_descriptions", "label": "Show product description", "default": true }
+  ],
+  "blocks": [
+    { "type": "product", "name": "Product", "settings": [ { "type": "product", "id": "product", "label": "Select product" } ] }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Custom Product Grid" }]
+}
+{% endschema %}
