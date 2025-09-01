@@ -10,14 +10,74 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "custom-banner",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "heading": "The Gift Guide",
+        "subheading": "Handpicked items you’ll love",
+        "banner_image": "",
+        "button_text": "Shop Now",
+        "button_link": "/collections/all",
+        "align": "center"
+      }
+    },
+    "grid": {
+      "type": "custom-product-grid",
+      "blocks": {
+        "prod1": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "prod2": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "prod3": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "prod4": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "prod5": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "prod6": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "prod1",
+        "prod2",
+        "prod3",
+        "prod4",
+        "prod5",
+        "prod6"
+      ],
+      "settings": {
+        "soft_jacket_product": "",
+        "trigger_color": "Black",
+        "trigger_size": "Medium",
+        "show_descriptions": true
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "grid"
   ]
 }
