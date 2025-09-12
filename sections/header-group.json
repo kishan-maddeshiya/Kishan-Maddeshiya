@@ -58,6 +58,7 @@
       "type": "custom-banner",
       "name": "Custom Banner",
       "settings": {
+        "banner_image": "shopify://shop_images/a-hand-removes-a-sweater-from-a-clothing-rack.jpg",
         "banner_heading": "The Gift Guide",
         "banner_subheading": "Find the perfect gifts today",
         "heading_color": "#000000",
@@ -75,7 +76,7 @@
         "products_limit": 6,
         "grid_columns": "3",
         "product_title_color": "#000000",
-        "price_color": "#FF0000"
+        "price_color": "#ff0000"
       }
     }
   },
