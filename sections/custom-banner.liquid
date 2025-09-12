@@ -20,6 +20,17 @@
       "default": "Find the perfect gifts today"
     },
     {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
       "type": "color",
       "id": "heading_color",
       "label": "Heading Color",
@@ -32,51 +43,56 @@
       "default": "#333333"
     },
     {
-      "type": "url",
-      "id": "banner_button_link",
-      "label": "Button Link"
-    },
-    {
       "type": "text",
       "id": "banner_button_text",
       "label": "Button Text",
       "default": "Shop Now"
     },
     {
+      "type": "url",
+      "id": "banner_button_link",
+      "label": "Button Link"
+    },
+    {
       "type": "color",
       "id": "button_bg",
       "label": "Button Background",
-      "default": "#FFD700"
+      "default": "#000000"
     },
     {
       "type": "color",
       "id": "button_text_color",
       "label": "Button Text Color",
-      "default": "#000000"
+      "default": "#ffffff"
     }
   ],
   "presets": [
     {
-      "name": "Custom Banner"
+      "name": "Custom Banner",
+      "category": "Custom Sections"
     }
   ]
 }
 {% endschema %}
 
 <section class="custom-banner">
-  <div class="banner-bg" 
-    {% if section.settings.banner_image != blank %} 
-      style="background-image: url({{ section.settings.banner_image | image_url: width: 2000 }});" 
+  <div class="banner-bg"
+    {% if section.settings.banner_image != blank %}
+      style="background-image: url({{ section.settings.banner_image | image_url: width: 2000 }});"
     {% endif %}>
-    <div class="banner-content">
+    
+    <div class="banner-content align-{{ section.settings.text_alignment }}">
       {% if section.settings.banner_heading != blank %}
         <h1 style="color: {{ section.settings.heading_color }}">{{ section.settings.banner_heading }}</h1>
       {% endif %}
+
       {% if section.settings.banner_subheading != blank %}
         <p style="color: {{ section.settings.subheading_color }}">{{ section.settings.banner_subheading }}</p>
       {% endif %}
+
       {% if section.settings.banner_button_text != blank and section.settings.banner_button_link != blank %}
         <a href="{{ section.settings.banner_button_link }}" 
+           class="banner-btn"
            style="background-color: {{ section.settings.button_bg }}; color: {{ section.settings.button_text_color }};">
           {{ section.settings.banner_button_text }}
         </a>
@@ -110,8 +126,37 @@
 .custom-banner .banner-bg {
   background-size: cover;
   background-position: center;
-  padding: 80px 20px;
+  min-height: 400px; /* controls banner height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.custom-banner .banner-content {
+  max-width: 800px;
+}
+
+.custom-banner .banner-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 4px;
+  margin-top: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+
+/* Alignment control */
+.align-left {
+  text-align: left;
+}
+.align-center {
   text-align: center;
+}
+.align-right {
+  text-align: right;
 }
 
 
