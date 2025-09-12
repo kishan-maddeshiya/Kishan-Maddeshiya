@@ -63,14 +63,25 @@
 }
 {% endschema %}
 
-<section class="custom-banner" style="background-image: url({{ section.settings.banner_image | image_url: '2000x' }});">
-  <div class="banner-content">
-    <h1 style="color: {{ section.settings.heading_color }}">{{ section.settings.banner_heading }}</h1>
-    <p style="color: {{ section.settings.subheading_color }}">{{ section.settings.banner_subheading }}</p>
-    <a href="{{ section.settings.banner_button_link }}" 
-       style="background-color: {{ section.settings.button_bg }}; color: {{ section.settings.button_text_color }};">
-      {{ section.settings.banner_button_text }}
-    </a>
+<section class="custom-banner">
+  <div class="banner-bg" 
+    {% if section.settings.banner_image != blank %} 
+      style="background-image: url({{ section.settings.banner_image | image_url: width: 2000 }});" 
+    {% endif %}>
+    <div class="banner-content">
+      {% if section.settings.banner_heading != blank %}
+        <h1 style="color: {{ section.settings.heading_color }}">{{ section.settings.banner_heading }}</h1>
+      {% endif %}
+      {% if section.settings.banner_subheading != blank %}
+        <p style="color: {{ section.settings.subheading_color }}">{{ section.settings.banner_subheading }}</p>
+      {% endif %}
+      {% if section.settings.banner_button_text != blank and section.settings.banner_button_link != blank %}
+        <a href="{{ section.settings.banner_button_link }}" 
+           style="background-color: {{ section.settings.button_bg }}; color: {{ section.settings.button_text_color }};">
+          {{ section.settings.banner_button_text }}
+        </a>
+      {% endif %}
+    </div>
   </div>
 </section>
 
@@ -95,4 +106,13 @@
   text-decoration: none;
   font-weight: bold;
 }
+
+.custom-banner .banner-bg {
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+
 </style>
