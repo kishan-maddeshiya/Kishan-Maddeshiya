@@ -28,7 +28,7 @@
         { "value": "center", "label": "Center" },
         { "value": "right", "label": "Right" }
       ],
-      "default": "center"
+      "default": "left"
     },
     {
       "type": "color",
@@ -76,88 +76,102 @@
 {% endschema %}
 
 <section class="custom-banner">
-  <div class="banner-bg"
+  <div
+    class="banner-bg"
     {% if section.settings.banner_image != blank %}
       style="background-image: url({{ section.settings.banner_image | image_url: width: 2000 }});"
-    {% endif %}>
-    
-    <div class="banner-content align-{{ section.settings.text_alignment }}">
-      {% if section.settings.banner_heading != blank %}
-        <h1 style="color: {{ section.settings.heading_color }}">{{ section.settings.banner_heading }}</h1>
-      {% endif %}
+    {% endif %}
+  >
+    <div class="banner-overlay">
+      <div class="banner-content align-{{ section.settings.text_alignment }}">
+        {% if section.settings.banner_heading != blank %}
+          <h1 style="color: {{ section.settings.heading_color }}">{{ section.settings.banner_heading }}</h1>
+        {% endif %}
 
-      {% if section.settings.banner_subheading != blank %}
-        <p style="color: {{ section.settings.subheading_color }}">{{ section.settings.banner_subheading }}</p>
-      {% endif %}
+        {% if section.settings.banner_subheading != blank %}
+          <p style="color: {{ section.settings.subheading_color }}">{{ section.settings.banner_subheading }}</p>
+        {% endif %}
 
-      {% if section.settings.banner_button_text != blank and section.settings.banner_button_link != blank %}
-        <a href="{{ section.settings.banner_button_link }}" 
-           class="banner-btn"
-           style="background-color: {{ section.settings.button_bg }}; color: {{ section.settings.button_text_color }};">
-          {{ section.settings.banner_button_text }}
-        </a>
-      {% endif %}
+        {% if section.settings.banner_button_text != blank and section.settings.banner_button_link != blank %}
+          <a
+            href="{{ section.settings.banner_button_link }}"
+            class="banner-btn"
+            style="background-color: {{ section.settings.button_bg }}; color: {{ section.settings.button_text_color }};"
+          >
+            {{ section.settings.banner_button_text }}
+          </a>
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-.custom-banner {
-  background-size: cover;
-  background-position: center;
-  padding: 80px 20px;
-  text-align: center;
-}
-.custom-banner .banner-content h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-.custom-banner .banner-content p {
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-.custom-banner .banner-content a {
-  padding: 12px 28px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-}
+    .custom-banner {
+      background-size: cover;
+      background-position: center;
+      padding: 80px 20px;
+      text-align: center;
+      width: 100%;
+    }
+    .custom-banner .banner-content h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    .custom-banner .banner-content p {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .custom-banner .banner-content a {
+      padding: 12px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-.custom-banner .banner-bg {
-  background-size: cover;
-  background-position: center;
-  min-height: 400px; /* controls banner height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
-}
+    .custom-banner .banner-bg {
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      min-height: 500px; /* ✅ Banner height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+    }
+  .custom-banner .banner-content {
+    max-width: 600px;
+    padding: 40px;
+  }
+   .custom-banner .banner-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 4px;
+      margin-top: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .custom-banner .banner-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
 
-.custom-banner .banner-content {
-  max-width: 800px;
-}
-
-.custom-banner .banner-btn {
-  display: inline-block;
-  padding: 12px 24px;
-  border-radius: 4px;
-  margin-top: 20px;
-  text-decoration: none;
-  font-weight: bold;
-}
 
 
-
-/* Alignment control */
+    /* Alignment control */
 .align-left {
   text-align: left;
+  margin-left: 5%;
 }
 .align-center {
   text-align: center;
+  margin: 0 auto;
 }
 .align-right {
   text-align: right;
+  margin-right: 5%;
 }
-
 
 </style>
