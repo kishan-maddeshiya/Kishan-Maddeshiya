@@ -64,14 +64,25 @@
         "subheading_color": "#333333",
         "banner_button_link": "",
         "banner_button_text": "Shop Now",
-        "button_bg": "#FFD700",
+        "button_bg": "#ffd700",
         "button_text_color": "#000000"
+      }
+    },
+    "custom_product_grid_6AFTj8": {
+      "type": "custom-product-grid",
+      "name": "Custom Product Grid (All Products)",
+      "settings": {
+        "products_limit": 6,
+        "grid_columns": "3",
+        "product_title_color": "#000000",
+        "price_color": "#FF0000"
       }
     }
   },
   "order": [
     "announcement-bar",
     "header",
-    "custom_banner_PACMRQ"
+    "custom_banner_PACMRQ",
+    "custom_product_grid_6AFTj8"
   ]
 }
