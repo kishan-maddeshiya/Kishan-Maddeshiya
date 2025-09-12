@@ -59,6 +59,7 @@
       "name": "Custom Banner",
       "settings": {
         "banner_image": "shopify://shop_images/a-hand-removes-a-sweater-from-a-clothing-rack.jpg",
+        "banner_height": 600,
         "banner_heading": "The Gift Guide",
         "banner_subheading": "Find the perfect gifts today",
         "text_alignment": "left",
