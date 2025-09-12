@@ -1,0 +1,98 @@
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Background"
+    },
+    {
+      "type": "text",
+      "id": "banner_heading",
+      "label": "Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "text",
+      "id": "banner_subheading",
+      "label": "Subheading",
+      "default": "Find the perfect gifts today"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "url",
+      "id": "banner_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "banner_button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#FFD700"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="custom-banner" style="background-image: url({{ section.settings.banner_image | image_url: '2000x' }});">
+  <div class="banner-content">
+    <h1 style="color: {{ section.settings.heading_color }}">{{ section.settings.banner_heading }}</h1>
+    <p style="color: {{ section.settings.subheading_color }}">{{ section.settings.banner_subheading }}</p>
+    <a href="{{ section.settings.banner_button_link }}" 
+       style="background-color: {{ section.settings.button_bg }}; color: {{ section.settings.button_text_color }};">
+      {{ section.settings.banner_button_text }}
+    </a>
+  </div>
+</section>
+
+<style>
+.custom-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+.custom-banner .banner-content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+.custom-banner .banner-content p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.custom-banner .banner-content a {
+  padding: 12px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+</style>
