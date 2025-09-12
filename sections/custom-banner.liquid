@@ -7,6 +7,17 @@
       "id": "banner_image",
       "label": "Banner Background"
     },
+
+    {
+      "type": "range",
+      "id": "banner_height",
+      "label": "Banner Height (px)",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "default": 500
+    },
+
     {
       "type": "text",
       "id": "banner_heading",
@@ -107,71 +118,70 @@
 </section>
 
 <style>
-    .custom-banner {
-      background-size: cover;
-      background-position: center;
-      padding: 80px 20px;
-      text-align: center;
-      width: 100%;
-    }
-    .custom-banner .banner-content h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-    .custom-banner .banner-content p {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-    .custom-banner .banner-content a {
-      padding: 12px 28px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+      .custom-banner {
+        background-size: cover;
+        background-position: center;
+        padding: 80px 20px;
+        text-align: center;
+        width: 100%;
+      }
+      .custom-banner .banner-content h1 {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+      .custom-banner .banner-content p {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      .custom-banner .banner-content a {
+        padding: 12px 28px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+      }
 
-    .custom-banner .banner-bg {
-      background-size: cover;
-      background-position: center;
+      .custom-banner .banner-bg {
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        min-height: {{ section.settings.banner_height }}px; /* ✅ Dynamic height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+      }
+    .custom-banner .banner-content {
+      max-width: 600px;
+      padding: 40px;
+    }
+     .custom-banner .banner-btn {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 4px;
+        margin-top: 20px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .custom-banner .banner-overlay {
       width: 100%;
-      min-height: 500px; /* ✅ Banner height */
+      height: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 60px 20px;
     }
-  .custom-banner .banner-content {
-    max-width: 600px;
-    padding: 40px;
+
+
+
+      /* Alignment control */
+  .align-left {
+    text-align: left;
+    margin-left: 5%;
   }
-   .custom-banner .banner-btn {
-      display: inline-block;
-      padding: 12px 24px;
-      border-radius: 4px;
-      margin-top: 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .custom-banner .banner-overlay {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
+  .align-center {
+    text-align: center;
+    margin: 0 auto;
   }
-
-
-
-    /* Alignment control */
-.align-left {
-  text-align: left;
-  margin-left: 5%;
-}
-.align-center {
-  text-align: center;
-  margin: 0 auto;
-}
-.align-right {
-  text-align: right;
-  margin-right: 5%;
-}
-
+  .align-right {
+    text-align: right;
+    margin-right: 5%;
+  }
 </style>
