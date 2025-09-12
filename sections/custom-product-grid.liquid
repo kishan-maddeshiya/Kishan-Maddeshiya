@@ -1,21 +1,58 @@
+<section class="custom-product-grid">
+  <div class="grid grid-{{ section.settings.grid_columns }}">
+    {% paginate collections.all.products by section.settings.products_limit %}
+      {% for product in collections.all.products %}
+        <div class="product-card">
+          <a href="{{ product.url }}">
+            {% if product.featured_image %}
+              <img 
+                src="{{ product.featured_image | image_url: width: 600 }}" 
+                alt="{{ product.title }}" 
+                width="600" 
+                height="{{ 600 | divided_by: product.featured_image.aspect_ratio | round }}">
+            {% endif %}
+            <h3 style="color: {{ section.settings.product_title_color }}">{{ product.title }}</h3>
+            <p style="color: {{ section.settings.price_color }}">{{ product.price | money }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    {% endpaginate %}
+  </div>
+</section>
+
+<style>
+.custom-product-grid {
+  padding: 40px 20px;
+}
+.custom-product-grid .grid {
+  display: grid;
+  gap: 20px;
+}
+.custom-product-grid .grid-2 { grid-template-columns: repeat(2, 1fr); }
+.custom-product-grid .grid-3 { grid-template-columns: repeat(3, 1fr); }
+.custom-product-grid .grid-4 { grid-template-columns: repeat(4, 1fr); }
+.product-card {
+  text-align: center;
+}
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+.product-card h3 {
+  margin-top: 10px;
+  font-size: 18px;
+}
+.product-card p {
+  font-size: 16px;
+  font-weight: bold;
+}
+</style>
+
 {% schema %}
 {
-  "name": "Custom Product Grid",
+  "name": "Product Grid",
   "settings": [
-    {
-      "type": "collection",
-      "id": "product_collection",
-      "label": "Select Collection"
-    },
-    {
-      "type": "range",
-      "id": "products_limit",
-      "min": 2,
-      "max": 12,
-      "step": 1,
-      "label": "Number of products",
-      "default": 6
-    },
+    { "type": "range", "id": "products_limit", "min": 2, "max": 12, "step": 1, "label": "Number of products", "default": 6 },
     {
       "type": "select",
       "id": "grid_columns",
@@ -27,73 +64,9 @@
         { "value": "4", "label": "4 Columns" }
       ]
     },
-    {
-      "type": "color",
-      "id": "product_title_color",
-      "label": "Product Title Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "price_color",
-      "label": "Price Color",
-      "default": "#FF0000"
-    }
+    { "type": "color", "id": "product_title_color", "label": "Product Title Color", "default": "#000000" },
+    { "type": "color", "id": "price_color", "label": "Price Color", "default": "#FF0000" }
   ],
-  "presets": [
-    {
-      "name": "Custom Product Grid"
-    }
-  ]
+  "presets": [{ "name": "Custom Product Grid (All Products)" }]
 }
 {% endschema %}
-
-<section class="custom-product-grid">
-  <div class="grid grid-{{ section.settings.grid_columns }}">
-    {% for product in collections[section.settings.product_collection].products
-      limit: section.settings.products_limit
-    %}
-      <div class="product-card">
-        <a href="{{ product.url }}">
-          <img
-            src="{{ product.featured_image | image_url: '600x' }}"
-            alt="{{ product.title }}"
-            width="{{ product.featured_image.width }}"
-            height="{{ product.featured_image.height }}"
-          >
-
-          <h3 style="color: {{ section.settings.product_title_color }}">{{ product.title }}</h3>
-          <p style="color: {{ section.settings.price_color }}">{{ product.price | money }}</p>
-        </a>
-      </div>
-    {% endfor %}
-  </div>
-</section>
-
-<style>
-  .custom-product-grid {
-    padding: 40px 20px;
-  }
-  .custom-product-grid .grid {
-    display: grid;
-    gap: 20px;
-  }
-  .custom-product-grid .grid-2 { grid-template-columns: repeat(2, 1fr); }
-  .custom-product-grid .grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .custom-product-grid .grid-4 { grid-template-columns: repeat(4, 1fr); }
-  .product-card {
-    text-align: center;
-  }
-  .product-card img {
-    width: 100%;
-    border-radius: 8px;
-  }
-  .product-card h3 {
-    margin-top: 10px;
-    font-size: 18px;
-  }
-  .product-card p {
-    font-size: 16px;
-    font-weight: bold;
-  }
-</style>
