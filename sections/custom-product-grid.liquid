@@ -16,7 +16,13 @@
             <h3 style="color: {{ section.settings.product_title_color }}">{{ product.title }}</h3>
             <p style="color: {{ section.settings.price_color }}">{{ product.price | money }}</p>
           </a>
-          <a href="{{ product.url }}" class="btn-view-details">View Details</a>
+          <a
+            href="{{ product.url }}"
+            class="view-btn"
+            style="background-color: {{ section.settings.button_color }};"
+          >
+            {{ section.settings.button_text }}
+          </a>
         </div>
       {% endfor %}
     {% endpaginate %}
@@ -24,51 +30,47 @@
 </section>
 
 <style>
-      .custom-product-grid {
-        padding: 40px 20px;
-      }
-      .custom-product-grid .grid {
-        display: grid;
-        gap: 20px;
-      }
-      .custom-product-grid .grid-2 { grid-template-columns: repeat(2, 1fr); }
-      .custom-product-grid .grid-3 { grid-template-columns: repeat(3, 1fr); }
-      .custom-product-grid .grid-4 { grid-template-columns: repeat(4, 1fr); }
-      .product-card {
-        text-align: center;
-      }
-      .product-card img {
-      width: 100%;
-      height: auto; /* let image scale naturally */
-      aspect-ratio: 1/1; /* optional: force square thumbnails */
-      object-fit: cover; /* prevent stretch, crop instead */
-      border-radius: 8px;
-    }
-
-      .product-card h3 {
-        margin-top: 10px;
-        font-size: 18px;
-      }
-      .product-card p {
-        font-size: 16px;
-        font-weight: bold;
-      }
-
-
-    .btn-view-details {
+  .custom-product-grid {
+    padding: 40px 20px;
+  }
+  .custom-product-grid .grid {
+    display: grid;
+    gap: 20px;
+  }
+  .custom-product-grid .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .custom-product-grid .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .custom-product-grid .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .product-card {
+    text-align: center;
+  }
+  .product-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .product-card h3 {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  .product-card p {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .view-btn {
     display: inline-block;
-    margin-top: 8px;
-    padding: 8px 14px;
-    background-color: #007BFF; /* blue */
+    margin-top: 10px;
+    padding: 10px 16px;
     color: #fff;
     text-decoration: none;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: background 0.3s ease;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s ease;
   }
-
-  .btn-view-details:hover {
-    background-color: #0056b3; /* darker blue */
+  .view-btn:hover {
+    opacity: 0.9;
   }
 </style>
 
@@ -96,9 +98,33 @@
         { "value": "4", "label": "4 Columns" }
       ]
     },
-    { "type": "color", "id": "product_title_color", "label": "Product Title Color", "default": "#000000" },
-    { "type": "color", "id": "price_color", "label": "Price Color", "default": "#FF0000" }
+    {
+      "type": "color",
+      "id": "product_title_color",
+      "label": "Product Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price Color",
+      "default": "#FF0000"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "View Details"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#007bff"
+    }
   ],
-  "presets": [{ "name": "Custom Product Grid (All Products)" }]
+  "presets": [
+    { "name": "Custom Product Grid (All Products)" }
+  ]
 }
 {% endschema %}
