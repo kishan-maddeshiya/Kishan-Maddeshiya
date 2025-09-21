@@ -75,10 +75,12 @@
       "type": "custom-product-grid",
       "name": "Custom Product Grid (All Products)",
       "settings": {
-        "products_limit": 6,
+        "products_limit": 12,
         "grid_columns": "3",
         "product_title_color": "#000000",
-        "price_color": "#ff0000"
+        "price_color": "#ff0000",
+        "button_text": "Order Now",
+        "button_color": "#000000"
       }
     }
   },
