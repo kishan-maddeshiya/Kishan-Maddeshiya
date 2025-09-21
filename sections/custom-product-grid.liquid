@@ -16,6 +16,7 @@
             <h3 style="color: {{ section.settings.product_title_color }}">{{ product.title }}</h3>
             <p style="color: {{ section.settings.price_color }}">{{ product.price | money }}</p>
           </a>
+          <a href="{{ product.url }}" class="btn-view-details">View Details</a>
         </div>
       {% endfor %}
     {% endpaginate %}
